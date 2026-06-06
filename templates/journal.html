@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journaling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f3;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background: #6fa35f;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 0 0 20px 20px;
+        }
+        .journal-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .journal-item {
+            margin: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .journal-item:hover {
+            transform: scale(1.1);
+        }
+        .journal-item img {
+            width: 250px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Journaling</div>
+    
+    <div class="journal-container">
+        <div class="journal-item">
+            <a href="https://journey.cloud/" target="_blank">
+                <img src="static/images/journal1.jpg" alt="Journey Journal">
+            </a>
+            <p>Journey - Personal Journal</p>
+        </div>
+        
+        <div class="journal-item">
+            <a href="https://www.dayoneapp.com/" target="_blank">
+                <img src="static/images/journal2.png" alt="Day One Journal">
+            </a>
+            <p>Day One Journal</p>
+        </div>
+        
+        <div class="journal-item">
+            <a href="https://penzu.com/" target="_blank">
+                <img src="static/images/journal3.jpg" alt="Penzu Journal">
+            </a>
+            <p>Penzu - Secure Online Journal</p>
+        </div>
+        
+        <div class="journal-item">
+            <a href="https://www.goodnotes.com/" target="_blank">
+                <img src="static/images/journal4.jpg" alt="GoodNotes Digital Journal">
+            </a>
+            <p>GoodNotes - Digital Journal</p>
+        </div>
+    </div>
+</body>
+</html>

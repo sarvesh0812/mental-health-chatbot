@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+           
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f3;
+            margin: 0;
+            padding: 0;
+        
+        }
+        .chat-container {
+            width: 800px;
+            height: 500px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin: auto;
+            margin-top: 15px;
+        }
+        .chat-header {
+            background: #6fa35f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chat-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background: #e9eff6;
+        }
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+        .chat-footer button {
+            background: #6fa35f;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .header {
+            background: #6fa35f;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 0 0 20px 20px;
+        }
+        .header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header h2 {
+            margin: 0;
+        }
+
+        #left, #right{
+                background-color: white;
+                width: 48%;
+                padding: 10px;
+                text-align: justify;
+         
+                border-radius: 10px;
+            }
+            #left{
+                align-self: flex-start;
+                background-color: #dcf8c6;
+            }
+            #right{
+                align-self: flex-end;
+                background-color: #dcf8c6;
+            }
+            #Box{
+                padding: 25px 10px;
+        
+                height: 80vh;
+                overflow: scroll;
+                display: flex;
+                flex-direction: column;
+                
+            }
+            #Links{
+                width: 10%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            #Links a{
+                text-decoration: none;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>MEDICAL CHATBOT</h2>
+        <div id="Links">
+            <a href="/home">HOME</a>
+            <a href="/profile"><img src="static\\images\\profile.png" alt="Profile"></a>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="chat-header">Chatbot</div>
+        <div class="chat-body" id="Box">
+            {% if chat_history %}
+                            {% for row in chat_history %}
+                            <div id="right">
+                                <p>{{row[0]}}</p>
+                            </div>
+                            <br>
+                            <div id="left">
+                                <p>{{row[1]}}</p>
+                            </div>
+                            <br>
+                            {% endfor %}
+                            {% endif %}
+        </div>
+        <div class="chat-footer">
+            <form action="/analyse" method="post">
+                <input type="text" name="query" placeholder="Type a message...">
+            <button>Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

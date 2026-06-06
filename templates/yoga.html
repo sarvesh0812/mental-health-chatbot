@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f3;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background: #6fa35f;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 0 0 20px 20px;
+        }
+        .yoga-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .yoga-item {
+            margin: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .yoga-item:hover {
+            transform: scale(1.1);
+        }
+        .yoga-item img {
+            width: 250px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Yoga</div>
+    
+    <div class="yoga-container">
+        <div class="yoga-item">
+            <a href="https://www.youtube.com/watch?v=v7AYKMP6rOE" target="_blank">
+                <img src="static/images/yoga1.jpg" alt="Beginner Yoga">
+            </a>
+            <p>Beginner Yoga</p>
+        </div>
+        
+        <div class="yoga-item">
+            <a href="https://www.youtube.com/watch?v=0o0kNeOyH98" target="_blank">
+                <img src="static/images/yoga2.jpg" alt="Morning Yoga Routine">
+            </a>
+            <p>Morning Yoga Routine</p>
+        </div>
+        
+        <div class="yoga-item">
+            <a href="https://www.youtube.com/watch?v=6zVVQpNcS8Y" target="_blank">
+                <img src="static/images/yoga3.jpg" alt="Yoga for Stress Relief">
+            </a>
+            <p>Yoga for Stress Relief</p>
+        </div>
+        
+        <div class="yoga-item">
+            <a href="https://www.youtube.com/watch?v=4pKly2JojMw" target="_blank">
+                <img src="static/images/yoga4.jpg" alt="Bedtime Yoga">
+            </a>
+            <p>Bedtime Yoga</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef5e9;
+            color: #4a604a;
+            height: 100vh;
+            margin: 0;
+        }
+        .header {
+            background: #6fa35f;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 0 0 20px 20px;
+        }
+        .header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header h2 {
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            max-height: 90vh;
+            margin: auto;
+            margin-top: 25px;
+        }
+        h1 {
+            text-align: center;
+            color: #6fa35f;
+            margin-bottom: 20px;
+        }
+        .question-container {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .question-container.active {
+            display: block;
+        }
+        label {
+            font-weight: bold;
+            color: #4a604a;
+            font-size: 18px;
+            line-height: 1.5;
+            display: block;
+            margin-bottom: 20px;
+        }
+        select {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0 25px;
+            border-radius: 5px;
+            border: 2px solid #6fa35f;
+            outline: none;
+            font-size: 16px;
+            background-color: #f4f9f4;
+            color: #4a604a;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        button {
+            padding: 15px 25px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        .prev-btn {
+            background: #f0f0f0;
+            color: #4a604a;
+        }
+        .prev-btn:hover {
+            background: #e0e0e0;
+        }
+        .next-btn, .submit-btn {
+            background: #6fa35f;
+            color: white;
+        }
+        .next-btn:hover, .submit-btn:hover {
+            background: #5a8e4d;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #6fa35f;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .progress-text {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #4a604a;
+            font-weight: bold;
+        }
+        #Links {
+            width: 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #Links a {
+            text-decoration: none;
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question-counter {
+            text-align: center;
+            color: #6fa35f;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>MEDICAL CHATBOT</h2>
+        <div id="Links">
+            <a href="/home"><img src="static\\images\\home.png" alt="home"></a>
+            <a href="/profile"><img src="static\\images\\profile.png" alt="Profile"></a>
+        </div>
+    </div> 
+    
+    <div class="container">
+        <h1>Mental Health Quiz</h1>
+        
+        <div class="progress-text">Question <span id="current-question">1</span> of 12</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <form id="quiz-form" action="/result" method="POST">
+            <!-- Question 1 -->
+            <div class="question-container active" id="question-1">
+                <label for="question_1">1. How do you feel about life right now?</label>
+                <select name="question_1" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">Level complete! 🏆</option>
+                    <option value="1">Halfway there. 🛤️</option>
+                    <option value="2">Stuck in a boss battle. 🏰</option>
+                    <option value="3">Game over vibes. 💀</option>
+                </select>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-container" id="question-2">
+                <label for="question_2">2. Feeling down, depressed, or hopeless?</label>
+                <select name="question_2" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">On top of the world! 🌍</option>
+                    <option value="1">A few clouds. 🌥️</option>
+                    <option value="2">Stormy days. 🌧️</option>
+                    <option value="3">Endless night. 🌑</option>
+                </select>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-container" id="question-3">
+                <label for="question_3">3. Trouble sleeping—too much or too little?</label>
+                <select name="question_3" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">Rested 🛌💤</option>
+                    <option value="1">Occasionally tossing and turning. 🔄😴</option>
+                    <option value="2">Restmode restart needed😵</option>
+                    <option value="3">Sleep is a rare treasure I can't find. 🗺️💔</option>
+                </select>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-container" id="question-4">
+                <label for="question_4">4. Low energy or feeling tired?</label>
+                <select name="question_4" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">Running on caffeine</option>
+                    <option value="1">Hangin' in there</option>
+                    <option value="2">Running low. 😴</option>
+                    <option value="3">Empty battery 🛑</option>
+                </select>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-container" id="question-5">
+                <label for="question_5">5. Changes in appetite?</label>
+                <select name="question_5" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">Balanced and happy. 🍽️</option>
+                    <option value="1">Sometimes a little off. 🍪</option>
+                    <option value="2">Struggling to keep track. 🤷‍♀️</option>
+                    <option value="3">Hunger is all over the place. 🍔</option>
+                </select>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-container" id="question-6">
+                <label for="question_6">6. Feeling bad about yourself?</label>
+                <select name="question_6" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">I'm feeling okay. 🙂</option>
+                    <option value="1">Some self-doubt. 🤔</option>
+                    <option value="2">Not feeling good enough. 😟</option>
+                    <option value="3">Always too hard on myself. 😞</option>
+                </select>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-container" id="question-7">
+                <label for="question_7">7. Trouble focusing on things?</label>
+                <select name="question_7" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">I'm on point! 🎯</option>
+                    <option value="1">I lose track sometimes. 🤔</option>
+                    <option value="2">Focus is a struggle. 😕</option>
+                    <option value="3">I can't focus at all. 😵</option>
+                </select>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-container" id="question-8">
+                <label for="question_8">8. Moving or speaking slower/faster than usual?</label>
+                <select name="question_8" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">I'm at a normal pace. 😊</option>
+                    <option value="1">I'm a bit slower sometimes. 🐢</option>
+                    <option value="2">I feel slow more often. 🐌</option>
+                    <option value="3">I'm either too fast or too slow. ⚡</option>
+                </select>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-container" id="question-9">
+                <label for="question_9">9. Thoughts like, "Would the world even miss me?"</label>
+                <select name="question_9" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">Never think about it. ✨</option>
+                    <option value="1">Occasionally crosses my mind. 🤔</option>
+                    <option value="2">I think about it quite often. 😞</option>
+                    <option value="3">It's something I think about a lot. 🧠</option>
+                </select>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-container" id="question-10">
+                <label for="question_10">10. How do you feel when you wake up in the morning?</label>
+                <select name="question_10" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">Ready to take on the day! 🌞</option>
+                    <option value="1">Tired, but I get through it. 😴</option>
+                    <option value="2">I feel exhausted even after sleeping. 😩</option>
+                    <option value="3">I dread getting out of bed. 😣</option>
+                </select>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question-container" id="question-11">
+                <label for="question_11">11. Do you often find yourself worrying about the future?</label>
+                <select name="question_11" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">I don't worry much. 🌈</option>
+                    <option value="1">I think about it, but I manage. 🤷‍♀️</option>
+                    <option value="2">I worry a lot about what's coming. 😕</option>
+                    <option value="3">I'm constantly anxious about the future. 😟</option>
+                </select>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question-container" id="question-12">
+                <label for="question_12">12. If any of the above has been affecting you, how much has it been throwing off your day-to-day life (work, home, or social stuff)?</label>
+                <select name="question_12" required>
+                    <option value="" selected disabled>-- Select an option --</option>
+                    <option value="0">Just fine, I've got it under control. 👍</option>
+                    <option value="1">A little bit, but going with the flow 🌊</option>
+                    <option value="2">It's been a bit of a challenge. 😬</option>
+                    <option value="3">It's really affecting everything. 😣</option>
+                </select>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="button-container">
+                <button type="button" class="prev-btn" id="prev-btn" style="display: none;">Previous</button>
+                <button type="button" class="next-btn" id="next-btn">Next Question</button>
+                <button type="submit" class="submit-btn" id="submit-btn" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentQuestion = 1;
+            const totalQuestions = 12;
+            const progressBar = document.getElementById('progress-bar');
+            const currentQuestionElement = document.getElementById('current-question');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            const form = document.getElementById('quiz-form');
+            
+            // Initialize progress
+            updateProgress();
+            
+            // Next button click handler
+            nextBtn.addEventListener('click', function() {
+                const currentSelect = document.querySelector(`#question-${currentQuestion} select`);
+                if (currentSelect.value === "") {
+                    alert('Please select an option before proceeding.');
+                    return;
+                }
+                
+                if (currentQuestion < totalQuestions) {
+                    document.getElementById(`question-${currentQuestion}`).classList.remove('active');
+                    currentQuestion++;
+                    document.getElementById(`question-${currentQuestion}`).classList.add('active');
+                    updateProgress();
+                    updateButtons();
+                }
+            });
+            
+            // Previous button click handler
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestion > 1) {
+                    document.getElementById(`question-${currentQuestion}`).classList.remove('active');
+                    currentQuestion--;
+                    document.getElementById(`question-${currentQuestion}`).classList.add('active');
+                    updateProgress();
+                    updateButtons();
+                }
+            });
+            
+            // Update progress bar and counter
+            function updateProgress() {
+                const progress = (currentQuestion / totalQuestions) * 100;
+                progressBar.style.width = `${progress}%`;
+                currentQuestionElement.textContent = currentQuestion;
+            }
+            
+            // Update button visibility
+            function updateButtons() {
+                if (currentQuestion === 1) {
+                    prevBtn.style.display = 'none';
+                } else {
+                    prevBtn.style.display = 'block';
+                }
+                
+                if (currentQuestion === totalQuestions) {
+                    nextBtn.style.display = 'none';
+                    submitBtn.style.display = 'block';
+                } else {
+                    nextBtn.style.display = 'block';
+                    submitBtn.style.display = 'none';
+                }
+            }
+            
+            // Add event listeners to select elements to enable auto-next
+            document.querySelectorAll('select').forEach(select => {
+                select.addEventListener('change', function() {
+                    // Small delay to allow selection to register
+                    setTimeout(() => {
+                        // If this is not the last question and option is selected, 
+                        // automatically move to next question after a brief delay
+                        if (this.value !== "" && currentQuestion < totalQuestions) {
+                            // Auto-advance after 0.5 seconds for better UX
+                            setTimeout(() => {
+                                if (this.value !== "") {
+                                    nextBtn.click();
+                                }
+                            }, 500);
+                        }
+                    }, 100);
+                });
+            });
+            
+            // Form submission validation
+            form.addEventListener('submit', function(e) {
+                let allAnswered = true;
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const select = document.querySelector(`select[name="question_${i}"]`);
+                    if (!select.value) {
+                        allAnswered = false;
+                        // Jump to the unanswered question
+                        document.querySelectorAll('.question-container').forEach(container => {
+                            container.classList.remove('active');
+                        });
+                        document.getElementById(`question-${i}`).classList.add('active');
+                        currentQuestion = i;
+                        updateProgress();
+                        updateButtons();
+                        break;
+                    }
+                }
+                
+                if (!allAnswered) {
+                    e.preventDefault();
+                    alert('Please answer all questions before submitting.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

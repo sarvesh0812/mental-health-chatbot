@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga & Meditation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f3;
+        }
+        .header {
+            background: #6fa35f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 0 0 20px 20px;
+            font-size: larger;
+        }
+        .music-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+        .music-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            height: 100%;
+        }
+        .music-card a {
+            display: block;
+            text-decoration: none;
+            color: black;
+        }
+        .music-card img {
+            width: 80%;
+            border-bottom: 2px solid #6da34d;
+            margin-top: 30px;
+        }
+        .music-card p {
+            padding: 10px;
+            font-weight: bold;
+        }
+        #Links{
+                width: 10%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            #Links a{
+                text-decoration: none;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h5>LETS PLAY🎶</h5>
+        </div>
+    </div> 
+    <div class="music-container">
+        <div class="music-card">
+            <a href="https://open.spotify.com/" target="_blank">
+                <img src="static\\images\\moon_oceans.jpg" alt="Moon Oceans">
+                <p>Moon Oceans</p>
+            </a>
+        </div>
+        <div class="music-card">
+            <a href="https://open.spotify.com/" target="_blank">
+                <img src="static\\images\\nature.jpg" alt="Nature Bliss">
+                <p>Nature Bliss</p>
+            </a>
+        </div>
+        <div class="music-card">
+            <a href="https://open.spotify.com/" target="_blank">
+                <img src="static\\images\\stars.jpg" alt="Starlight">
+                <p>Starlight</p>
+            </a>
+        </div>
+        <div class="music-card">
+            <a href="https://open.spotify.com/" target="_blank">
+                <img src="static\\images\\meditation.jpg" alt="Calm Mind">
+                <p>Calm Mind</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

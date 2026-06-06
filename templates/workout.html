@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workouts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f3;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background: #6fa35f;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 0 0 20px 20px;
+        }
+        .workout-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .workout-item {
+            margin: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .workout-item:hover {
+            transform: scale(1.1);
+        }
+        .workout-item img {
+            width: 250px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Workouts</div>
+    
+    <div class="workout-container">
+        <div class="workout-item">
+            <a href="https://www.youtube.com/watch?v=d2HoMzAa9ro" target="_blank">
+                <img src="static/images/workout1.jpg" alt="Full Body Workout">
+            </a>
+            <p>Full Body Workout</p>
+        </div>
+        
+        <div class="workout-item">
+            <a href="https://www.youtube.com/watch?v=UItWltVZZmE" target="_blank">
+                <img src="static/images/workout2.jpg" alt="Cardio Workout">
+            </a>
+            <p>Cardio Workout</p>
+        </div>
+        
+        <div class="workout-item">
+            <a href="https://www.youtube.com/watch?v=2pLT-olgUJs" target="_blank">
+                <img src="static/images/workout3.jpg" alt="Yoga for Strength">
+            </a>
+            <p>Workout for Strength</p>
+        </div>
+        
+        <div class="workout-item">
+            <a href="https://www.youtube.com/watch?v=ml6cT4AZdqI" target="_blank">
+                <img src="static/images/workout4.jpg" alt="HIIT Workout">
+            </a>
+            <p>HIIT Workout</p>
+        </div>
+    </div>
+</body>
+</html>

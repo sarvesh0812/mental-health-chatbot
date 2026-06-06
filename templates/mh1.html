@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindCare Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6fa35f;
+            --primary-dark: #5a8e4d;
+            --secondary: #4a90e2;
+            --accent: #ff7e5f;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f3 0%, #e8f4f0 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 0 0 25px 25px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        #Links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        #Links a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 12px;
+        }
+        
+        #Links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        #Links img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            padding: 60px 40px 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 25px auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* Quote Section */
+        .quote-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .quote-container {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff0cc 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .quote-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .quote-container::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 120px;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-title {
+            font-size: 24px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .quote-title i {
+            color: var(--accent);
+        }
+        
+        .quote-text {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--dark);
+            font-style: italic;
+            line-height: 1.4;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 18px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        /* Mental Health Section */
+        .mental-health-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+        
+        .mental-health-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .mental-health-text {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .mental-health-text:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mental-health-text p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .health-tips {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .health-tip {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: var(--dark);
+        }
+        
+        .health-tip i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        .mental-health-images {
+            flex: 1;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .health-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .health-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .health-image.large {
+            grid-column: span 2;
+            height: 220px;
+        }
+        
+        /* Quiz Section */
+        .quiz-section {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .quiz-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .quiz-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+        }
+        
+        .quiz-title {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .quiz-title i {
+            color: var(--accent);
+            font-size: 40px;
+        }
+        
+        .quiz-description {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .quiz-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(111, 163, 95, 0.3);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .quiz-button:hover::before {
+            left: 100%;
+        }
+        
+        .quiz-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(111, 163, 95, 0.4);
+        }
+        
+        .quiz-button i {
+            font-size: 24px;
+        }
+        
+        .quiz-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--gray);
+        }
+        
+        /* Doctor Section */
+        .doctor-section {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+        
+        .doctor-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doctor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(80px, -80px);
+        }
+        
+        .doctor-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-60px, 60px);
+        }
+        
+        .doctor-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+        
+        .doctor-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .doctor-info {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .doctor-name {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .doctor-title {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .doctor-bio {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .doctor-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 17px;
+        }
+        
+        .contact-item i {
+            width: 24px;
+            color: var(--accent);
+        }
+        
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+            }
+            
+            .header h2 {
+                font-size: 22px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .quote-text {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .quiz-title {
+                font-size: 28px;
+            }
+            
+            .doctor-card {
+                padding: 30px;
+            }
+            
+            .doctor-name {
+                font-size: 28px;
+            }
+        }
+        
+        /* Floating animation for quiz button */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .quiz-button {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h2><i class="fas fa-heartbeat"></i> MIND CARE BOT</h2>
+        <div id="Links">
+            <a href="/home">
+                <img src="static/images/home.png" alt="Home">
+                <span>Home</span>
+            </a>
+            <a href="/profile">
+                <img src="static/images/profile.png" alt="Profile">
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">Your Mental Wellness Journey Starts Here</h1>
+        <p class="hero-subtitle">Empowering you with tools, resources, and support to nurture your mental health and achieve emotional balance in your daily life.</p>
+    </div>
+    
+    <!-- Quote of the Day -->
+    <div class="quote-section">
+        <div class="quote-container">
+            <h3 class="quote-title"><i class="fas fa-quote-left"></i> QUOTE OF THE DAY</h3>
+            <p class="quote-text">"Your mental health is a priority. Your happiness is essential. Your self-care is a necessity."</p>
+            <p class="quote-author">— Anonymous</p>
+        </div>
+    </div>
+    
+    <!-- Mental Health Awareness -->
+    <div class="mental-health-section">
+        <h2 class="section-title">MENTAL HEALTH AWARENESS</h2>
+        <div class="mental-health-content">
+            <div class="mental-health-text">
+                <p>Mental health is just as important as physical health. It affects how we think, feel, and behave in daily life. It also helps determine how we handle stress, relate to others, and make choices.</p>
+                <p>Taking care of your mental health through mindfulness, therapy, and self-care is essential for a balanced, fulfilling life. Remember, it's okay not to be okay, and seeking help is a sign of strength, not weakness.</p>
+                
+                <div class="health-tips">
+                    <div class="health-tip">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Practice mindfulness and meditation daily</span>
+                    </div>
+                    <div class="health-tip">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Stay connected with loved ones</span>
+                    </div>
+                    <div class="health-tip">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Get regular physical exercise</span>
+                    </div>
+                    <div class="health-tip">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Prioritize quality sleep</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mental-health-images">
+                <img src="static/images/body.jpg" alt="Mental Health Awareness" class="health-image">
+                <img src="static/images/body1.jpg" alt="Self-Care" class="health-image">
+                <img src="static/images/body2.jpg" alt="Mindfulness" class="health-image large">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quiz Section -->
+    <div class="quiz-section">
+        <div class="quiz-card">
+            <h2 class="quiz-title"><i class="fas fa-brain"></i> Mental Health Check-in</h2>
+            <p class="quiz-description">Take our quick 5-minute assessment to understand your current mental wellbeing. The quiz is completely confidential and provides personalized insights based on your responses.</p>
+            <a href="/quiz" class="quiz-button">
+                <i class="fas fa-play-circle"></i>
+                <span>Start Mental Health Quiz</span>
+            </a>
+            
+            <div class="quiz-stats">
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Minutes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Confidential</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Doctor Section -->
+    <div class="doctor-section">
+        <div class="doctor-card">
+            <img src="static/images/doctor.jpg" alt="Doctor" class="doctor-image">
+            <div class="doctor-info">
+                <h2 class="doctor-name">Dr. Sarah Johnson</h2>
+                <p class="doctor-title">Licensed Clinical Psychologist & Mental Wellness Expert</p>
+                <p class="doctor-bio">With over 15 years of experience in cognitive behavioral therapy and mental health advocacy, Dr. Johnson specializes in helping individuals develop coping strategies, build resilience, and achieve emotional balance.</p>
+                <div class="doctor-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>sarah.johnson@mindcare.example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (234) 567-8900</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Available for consultations Mon-Fri, 9AM-5PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections for animation
+            document.querySelectorAll('.quote-section, .mental-health-section, .quiz-section, .doctor-section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+            
+            // Add hover effect to health images
+            const healthImages = document.querySelectorAll('.health-image');
+            healthImages.forEach(img => {
+                img.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                img.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Update quote of the day (could be dynamic)
+            const quotes = [
+                "Your mental health is a priority. Your happiness is essential. Your self-care is a necessity.",
+                "It's okay to not be okay. It's okay to ask for help. It's okay to take a break.",
+                "Healing is not linear, but every step forward is progress.",
+                "You are stronger than you think, more resilient than you know, and capable of more than you imagine.",
+                "Self-care isn't selfish. It's essential to your well-being and ability to care for others."
+            ];
+            
+            const authors = [
+                "Anonymous",
+                "Unknown",
+                "Mental Health Advocate",
+                "Wellness Expert",
+                "Self-Care Proponent"
+            ];
+            
+            // Change quote every day (based on day of month)
+            const today = new Date().getDate();
+            const quoteIndex = today % quotes.length;
+            
+            document.querySelector('.quote-text').textContent = `"${quotes[quoteIndex]}"`;
+            document.querySelector('.quote-author').textContent = `— ${authors[quoteIndex]}`;
+            
+            // Add a subtle pulse animation to the quiz button
+            const quizButton = document.querySelector('.quiz-button');
+            setInterval(() => {
+                quizButton.style.animation = 'none';
+                setTimeout(() => {
+                    quizButton.style.animation = 'float 3s ease-in-out infinite';
+                }, 10);
+            }, 10000);
+        });
+    </script>
+</body>
+</html>

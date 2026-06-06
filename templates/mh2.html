@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile & Edit Profile</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header {
+            background: #4a90e2;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-top: 15px;
+            border: 3px solid #4a90e2;
+        }
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .gender-box, .concerns {
+            text-align: left;
+            margin-top: 10px;
+        }
+        .concerns label {
+            display: block;
+            background: #eaf3fc;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .btn {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover{
+            background-color: #357ABD;
+        }
+        #Links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #Links a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">MEDICAL CHATBOT</div>
+        <form action="/update_profile" method="POST" enctype="multipart/form-data">
+            <img src="{{ profile_pic }}" alt="User" class="profile-img"><br>
+            <label>Choose profile picture</label><br>
+            <input type="file" name="profile_pic"><br>
+            <input type="text" class="input-box" name="name" placeholder="Full Name" value="{{ result[0] }}"><br>
+            <input type="email" class="input-box" name="email" placeholder="Email" value="{{ result[2] }}" readonly><br>
+            <input type="tel" class="input-box" name="phone" placeholder="Phone No." value="{{ result[1] }}"><br>
+            <input type="number" class="input-box" name="age" placeholder="Age" value="{{ result[4] }}"><br>
+        
+            <div class="gender-box">
+                <label><strong>Gender:</strong></label>
+                <label><input type="radio" name="gender" value="Male"> Male</label>
+                <label><input type="radio" name="gender" value="Female"> Female</label>
+                <label><input type="radio" name="gender" value="Other"> Other</label>
+            </div>
+        
+            <h3>My Concerns:</h3>
+            <div class="concerns">
+                <label><input type="checkbox" name="concerns" value="Anger"> Anger</label>
+                <label><input type="checkbox" name="concerns" value="Anxiety"> Anxiety</label>
+                <label><input type="checkbox" name="concerns" value="Depression"> Depression</label>
+                <label><input type="checkbox" name="concerns" value="Eating disorders"> Eating disorders</label>
+                <label><input type="checkbox" name="concerns" value="Self-esteem"> Self-esteem</label>
+                <label><input type="checkbox" name="concerns" value="Self-harm"> Self-harm</label>
+                <label><input type="checkbox" name="concerns" value="Stress"> Stress</label>
+                <label><input type="checkbox" name="concerns" value="Sleep disorders"> Sleep disorders</label>
+            </div>
+        
+            <button type="submit" class="btn">SAVE CHANGES</button>
+        </form>
+    </div>
+</body>
+</html>

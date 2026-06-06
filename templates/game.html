@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f3;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background: #6fa35f;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 0 0 20px 20px;
+        }
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .game-item {
+            margin: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .game-item:hover {
+            transform: scale(1.1);
+        }
+        .game-item img {
+            width: 250px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Games</div>
+    
+    <div class="game-container">
+        <div class="game-item">
+            <a href="https://www.silvergames.com/en/bubble-shooter" target="_blank">
+                <img src="static/images/antistress1.png" alt="Anti-Stress Game">
+            </a>
+            <p>Anti-Stress Game</p>
+        </div>
+        
+        <div class="game-item">
+            <a href="https://play.google.com/store/apps/details?id=com.meditation.relaxing" target="_blank">
+                <img src="static/images/antistress3.jpg" alt="Meditation Game">
+            </a>
+            <p>Meditation Game</p>
+        </div>
+        
+        <div class="game-item">
+            <a href="https://play.google.com/store/apps/details?id=com.puzzle.braintraining" target="_blank">
+                <img src="static/images/antistress2.png" alt="Brain Training Puzzle">
+            </a>
+            <p>Brain Training Puzzle</p>
+        </div>
+        
+        <div class="game-item">
+            <a href="https://play.google.com/store/apps/details?id=com.relax.coloring" target="_blank">
+                <img src="static/images/antistress4.jpg" alt="Relaxing Coloring Game">
+            </a>
+            <p>Relaxing Coloring Game</p>
+        </div>
+    </div>
+</body>
+</html>
