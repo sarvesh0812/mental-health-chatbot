@@ -31,7 +31,7 @@ cursor = connection.cursor()
 from groq import Groq
 
 client = Groq(
-    api_key="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"
+api_key="YOUR_GROQ_API_KEY"
 )
 response = client.chat.completions.create(
     model="llama-3.3-70b-versatile",
