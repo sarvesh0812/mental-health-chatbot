@@ -2,6 +2,7 @@ from flask import *
 import sqlite3
 from groq import Groq
 import uuid
+import os
 
 
 import pickle
@@ -31,8 +32,8 @@ cursor = connection.cursor()
 from groq import Groq
 
 client = Groq(
-api_key="YOUR_GROQ_API_KEY"
-)
+api_key=os.getenv("YOUR_GROQ_API_KEY"))
+
 response = client.chat.completions.create(
     model="llama-3.3-70b-versatile",
     messages=[
